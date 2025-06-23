@@ -14,8 +14,3 @@ bool Monster::isDead()
 {
     return health <= 0;
 }
-
-void Monster::Mstatus()
-{
-    cout << name << " | 공격력: " << attack << " | 체력: " << health << endl;
-}

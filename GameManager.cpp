@@ -16,7 +16,7 @@ unique_ptr<Monster> GameManager::generateMonster(int level)
 
 void GameManager::displayInventory(Character& player) 
 {
-    cout << "[ÀÎº¥Åä¸® ¸ñ·Ï]" << endl;
+    cout << "[ì¸ë²¤í† ë¦¬ ëª©ë¡]" << endl;
     for (size_t i = 0; i < player.inventory.size(); ++i) 
     {
         cout << i + 1 << ". " << player.inventory[i]->getName() << endl;
@@ -26,22 +26,22 @@ void GameManager::displayInventory(Character& player)
 bool GameManager::battle(Character& player) 
 {
     unique_ptr<Monster> monster = generateMonster(player.level);
-    cout << "\n¸ó½ºÅÍ " << monster->name << " µîÀå! Ã¼·Â: " << monster->health << ", °ø°Ý·Â: " << monster->attack << endl;
+    cout << "\nëª¬ìŠ¤í„° " << monster->name << " ë“±ìž¥! ì²´ë ¥: " << monster->health << ", ê³µê²©ë ¥: " << monster->attack << endl;
 
     while (player.health > 0 && !monster->isDead())
     {
-        cout << "\n--- ÇöÀç »óÅÂ ---" << endl;
-        cout << "| ³» »óÅÂ |" << "Ã¼·Â: " << player.health << " | °ø°Ý·Â: " << player.attack << endl;
-        cout << "| ¸ó½ºÅÍ »óÅÂ |" << "Ã¼·Â: " << monster->health << " | °ø°Ý·Â: " << monster->attack << endl;
+        cout << "\n--- í˜„ìž¬ ìƒíƒœ ---" << endl;
+        cout << "| ë‚´ ìƒíƒœ |" << "ì²´ë ¥: " << player.health << " | ê³µê²©ë ¥: " << player.attack << endl;
+        cout << "| ëª¬ìŠ¤í„° ìƒíƒœ |" << "ì²´ë ¥: " << monster->health << " | ê³µê²©ë ¥: " << monster->attack << endl;
 
-        cout << "\n[ÅÏ ¼±ÅÃ] ¹«¾ùÀ» ÇÏ½Ã°Ú½À´Ï±î?\n1. °ø°Ý\n2. ¾ÆÀÌÅÛ »ç¿ë" << endl;
+        cout << "\n[í„´ ì„ íƒ] ë¬´ì—‡ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?\n1. ê³µê²©\n2. ì•„ì´í…œ ì‚¬ìš©" << endl;
         int choice;
         cin >> choice;
 
         if (choice == 1)
         {
             monster->takeDamage(player.attack);
-            cout << player.name << "°¡ " << monster->name << "À»(¸¦) °ø°ÝÇÕ´Ï´Ù! ³²Àº Ã¼·Â: " << max(0, monster->health) << endl;
+            cout << player.name << "ê°€ " << monster->name << "ì„(ë¥¼) ê³µê²©í•©ë‹ˆë‹¤! ë‚¨ì€ ì²´ë ¥: " << max(0, monster->health) << endl;
         }
         else if (choice == 2) {
             if (!player.inventory.empty())
@@ -50,11 +50,11 @@ bool GameManager::battle(Character& player)
                 while (true)
                 {
                     displayInventory(player);
-                    cout << "»ç¿ëÇÒ ¾ÆÀÌÅÛ ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä (0: Ãë¼Ò): ";
+                    cout << "ì‚¬ìš©í•  ì•„ì´í…œ ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” (0: ì·¨ì†Œ): ";
                     cin >> itemIdx;
                     if (itemIdx == 0) 
                     {
-                        cout << "¾ÆÀÌÅÛ »ç¿ëÀ» Ãë¼ÒÇß½À´Ï´Ù." << endl;
+                        cout << "ì•„ì´í…œ ì‚¬ìš©ì„ ì·¨ì†Œí–ˆìŠµë‹ˆë‹¤." << endl;
                         break;
                     }
                     else if (itemIdx >= 1 && itemIdx <= player.inventory.size())
@@ -64,7 +64,7 @@ bool GameManager::battle(Character& player)
                     }
                     else
                     {
-                        cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØÁÖ¼¼¿ä." << endl;
+                        cout << "ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤. ë‹¤ì‹œ ì„ íƒí•´ì£¼ì„¸ìš”." << endl;
                     }
 
                     if (itemIdx != 0) break;
@@ -72,25 +72,25 @@ bool GameManager::battle(Character& player)
             }
             else
             {
-                cout << "»ç¿ëÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù." << endl;
+                cout << "ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤." << endl;
                 continue;
             }
         }
         else
         {
-            cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØÁÖ¼¼¿ä." << endl;
+            cout << "ìž˜ëª»ëœ ìž…ë ¥ìž…ë‹ˆë‹¤. ë‹¤ì‹œ ì„ íƒí•´ì£¼ì„¸ìš”." << endl;
         }
 
 
         if (monster->isDead()) break;
 
         player.health -= monster->attack;
-        cout << monster->name << "ÀÌ(°¡) " << player.name << "À»(¸¦) °ø°ÝÇÕ´Ï´Ù! ³²Àº Ã¼·Â: " << max(0, player.health) << endl;
+        cout << monster->name << "ì´(ê°€) " << player.name << "ì„(ë¥¼) ê³µê²©í•©ë‹ˆë‹¤! ë‚¨ì€ ì²´ë ¥: " << max(0, player.health) << endl;
     }
 
     if (player.health <= 0) 
     {
-        cout << player.name << "°¡ »ç¸ÁÇß½À´Ï´Ù. °ÔÀÓ ¿À¹ö!\n";
+        cout << player.name << "ê°€ ì‚¬ë§í–ˆìŠµë‹ˆë‹¤. ê²Œìž„ ì˜¤ë²„!\n";
         return false;
     }
     else 
@@ -99,19 +99,19 @@ bool GameManager::battle(Character& player)
         int gold = rand() % 11 + 10;
         player.experience += exp;
         player.gold += gold;
-        cout << player.name << "°¡ ÀüÅõ¿¡¼­ ½Â¸®Çß½À´Ï´Ù! °æÇèÄ¡: " << exp << " °ñµå: " << gold << "\n";
+        cout << player.name << "ê°€ ì „íˆ¬ì—ì„œ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤! ê²½í—˜ì¹˜: " << exp << " ê³¨ë“œ: " << gold << "\n";
 
         if (rand() % 100 < 30) 
         {
             if (rand() % 2 == 0)
             {
                 player.inventory.push_back(make_unique<HealthPotion>());
-                cout << "[È¹µæ ¾ÆÀÌÅÛ] Ã¼·Â Æ÷¼Ç\n";
+                cout << "[íšë“ ì•„ì´í…œ] ì²´ë ¥ í¬ì…˜\n";
             }
             else
             {
                 player.inventory.push_back(make_unique<AttackBoost>());
-                cout << "[È¹µæ ¾ÆÀÌÅÛ] °ø°Ý·Â Æ÷¼Ç\n";
+                cout << "[íšë“ ì•„ì´í…œ] ê³µê²©ë ¥ í¬ì…˜\n";
             }
         }
 

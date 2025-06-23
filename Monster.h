@@ -14,5 +14,4 @@ public:
     void takeDamage(int dmg);
     bool isDead();
     virtual ~Monster() {}
-    void Mstatus();
 };

@@ -17,7 +17,7 @@ class HealthPotion : public Item
 public:
     string getName() override 
     {
-        return "Ã¼·Â Æ÷¼Ç";
+        return "ì²´ë ¥ í¬ì…˜";
     }
 
     void use(Character* character) override;
@@ -28,7 +28,7 @@ class AttackBoost : public Item
 public:
     string getName() override
     {
-        return "°ø°İ·Â Áõ°¡ Æ÷¼Ç";
+        return "ê³µê²©ë ¥ ì¦ê°€ í¬ì…˜";
     }
 
     void use(Character* character) override;

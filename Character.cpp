@@ -1,11 +1,15 @@
+#pragma once
+#include<iostream> 
 #include "Character.h"
+#include "GameManager.h"
 #include "Item.h"
+using namespace std;
 
 Character::Character(string n) : name(n) {}
 
 void Character::Status() 
 {
-    cout << "[상태] 이름: " << name << " | 레벨: " << level << " | 체력: " << health
+    cout << "[상태] 이름:  " << name << " | 레벨: " << level << " | 체력: " << health
         << "/" << maxHealth << " | 공격력: " << attack
         << " | 경험치: " << experience << "/100 | 골드: " << gold << endl;
 }
